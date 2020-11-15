@@ -1,4 +1,16 @@
 <div class="container">
   <h1>Angular Directives</h1>
-  <p appStyle>Lorem ipsum dolor sit amet.</p>
+  <button
+    class="btn btn-primary"
+    (click)="isShow = !isShow"
+  >
+    Toggle
+  </button>
+  <p
+    [appStyle]="{border: '1px solid red', color: 'blue', borderRadius: '4px'}"
+    *appIfnot="isShow"
+  >
+    Lorem ipsum dolor sit amet.
+  </p>
+  <p [appStyle]="{border: '1px solid blue', color: 'red', borderRadius: '4px'}">Lorem ipsum dolor sit amet.</p>
 </div>
