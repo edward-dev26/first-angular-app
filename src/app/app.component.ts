@@ -13,11 +13,5 @@ export interface IPost {
 })
 
 export class AppComponent {
-  title = 'Hello Angular World';
-  posts: Array<IPost> = [
-    {title: 'Post 1', content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, iusto!'},
-    {title: 'Post 2', content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, iusto!'},
-    {title: 'Post 3', content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, iusto!'},
-    {title: 'Post 4', content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, iusto!'},
-  ];
+
 }
