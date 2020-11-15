@@ -1,12 +1,18 @@
 <div class="container">
   <h1>Angular Components</h1>
 
-  <app-post-form></app-post-form>
+  <app-post-form (onAdd)="addPost($event)"></app-post-form>
 
   <hr>
 
   <app-post
     *ngFor="let post of posts"
     [post]="post"
-  ></app-post>
+    (onDelete)="deletePost($event)"
+  >
+    <small *ngIf="post.content.length > 5; else short">Long post</small>
+    <ng-template #short>
+      <small>Short post</small>
+    </ng-template>
+  </app-post>
 </div>

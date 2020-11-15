@@ -1,13 +1,37 @@
 <form>
   <div class="form-group">
     <label class="w-100">Title
-      <input type="email" class="form-control">
+      <input
+        type="email"
+        class="form-control"
+        [(ngModel)]="post.title"
+        [ngModelOptions]="{standalone: true}"
+        #titleInput
+      >
     </label>
   </div>
   <div class="form-group">
     <label class="w-100">Content
-      <textarea class="form-control" rows="3"></textarea>
+      <textarea
+        class="form-control"
+        rows="3"
+        [(ngModel)]="post.content"
+        [ngModelOptions]="{standalone: true}"
+      ></textarea>
     </label>
   </div>
-  <button type="submit" class="btn btn-primary">Add Post</button>
+  <button
+    type="submit"
+    class="btn btn-primary"
+    (click)="addPost()"
+  >
+    Add Post
+  </button>
+  <button
+    type="submit"
+    class="btn btn-secondary ml-3"
+    (click)="focusTitle()"
+  >
+    Focus Title
+  </button>
 </form>

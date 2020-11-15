@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {IPost} from '../app.component';
 
 @Component({
@@ -6,6 +6,12 @@ import {IPost} from '../app.component';
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss']
 })
+
 export class PostComponent {
   @Input() post: IPost;
+  @Output() onDelete = new EventEmitter<number>();
+
+  deletePost() {
+    this.onDelete.emit(this.post.id);
+  }
 }

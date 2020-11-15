@@ -1,6 +1,8 @@
-<div class="card mb-3">
+<div class="post card mb-3">
   <div class="card-body">
     <h5 class="card-title">{{post.title}}</h5>
     <p class="card-text">{{post.content}}</p>
+    <ng-content></ng-content>
   </div>
+  <button (click)="deletePost()" class="post__delete btn btn-light">&times;</button>
 </div>
