@@ -1,10 +1,5 @@
 import {Component} from '@angular/core';
-
-export interface IPost {
-  title: string;
-  content: string;
-  id?: number;
-}
+import {CounterService} from './services/counter.service';
 
 @Component({
   selector: 'app-root',
@@ -13,5 +8,6 @@ export interface IPost {
 })
 
 export class AppComponent {
-
+  constructor(public counterService: CounterService) {
+  }
 }
