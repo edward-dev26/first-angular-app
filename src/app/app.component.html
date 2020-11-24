@@ -1,4 +1,25 @@
 <div class="container">
-  <h1>Angular Components</h1>
+  <h1>Angular Pipes</h1>
 
+  <h2>Filter: </h2>
+  <button class="btn btn-primary mr-2 mb-2" (click)="filter = 'title'">By title</button>
+  <button class="btn btn-primary mb-2" (click)="filter = 'text'">By Text</button>
+
+  <br>
+
+  <button class="btn btn-success mb-2" (click)="addPost()">Add new post</button>
+
+  <div class="form-group">
+    <input type="text" [(ngModel)]="term">
+  </div>
+
+
+  <div class="card mb-2" *ngFor="let post of posts | filter:term:filter">
+    <div class="card-body">
+      <h5 class="card-title">{{ post.title }}</h5>
+      <p class="card-text">{{ post.text }}</p>
+    </div>
+  </div>
+
+  <p>Date: {{ date$ | async | date:'HH:mm:ss' }}</p>
 </div>
