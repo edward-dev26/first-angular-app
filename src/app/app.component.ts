@@ -11,8 +11,10 @@ export class AppComponent implements OnInit {
   todos: Array<ITodo> = [];
   title: '';
   loading = false;
+  error: string = null;
 
   constructor(private todosService: TodosService) {
+    this.handleError = this.handleError.bind(this);
   }
 
   ngOnInit() {
@@ -40,14 +42,14 @@ export class AppComponent implements OnInit {
       .subscribe(response => {
         this.todos = response;
         this.loading = false;
-      });
+      }, this.handleError);
   }
 
   deleteTodo(id: number) {
     this.todosService.deleteTodo(id)
       .subscribe(() => {
         this.todos = this.todos.filter(todo => todo.id !== id);
-      });
+      }, this.handleError);
   }
 
   completeTodo(id: number) {
@@ -56,6 +58,14 @@ export class AppComponent implements OnInit {
     this.todosService.updateTodo(id, todo)
       .subscribe(() => {
         todo.completed = true;
-      });
+      }, this.handleError);
+  }
+
+  handleError(error) {
+    this.error = error.message;
+  }
+
+  closeAlert() {
+    this.error = null;
   }
 }

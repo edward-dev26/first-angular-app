@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {delay} from 'rxjs/operators';
 
 export interface ITodo {
@@ -16,11 +16,19 @@ export class TodosService {
   }
 
   addTodo(todo: ITodo) {
-    return this.http.post<ITodo>(BASE_URL, todo);
+    return this.http.post<ITodo>(BASE_URL, todo, {
+      headers: new HttpHeaders({
+        ['MyHeader']: Math.random().toString()
+      })
+    });
   }
 
   fetchTodos() {
-    return this.http.get<Array<ITodo>>(`${BASE_URL}?_limit=10`)
+    return this.http.get<Array<ITodo>>(BASE_URL, {
+      params: new HttpParams()
+        .append('_limit', '5')
+        .append('custom', 'any')
+    })
       .pipe(delay(1500));
   }
 
