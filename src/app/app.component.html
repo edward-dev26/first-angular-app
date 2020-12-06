@@ -1,4 +1,62 @@
 <div class="container">
-  <h1>Angular Components</h1>
+  <h1>Angular Form</h1>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="form-group">
+      <label>Email address</label>
+      <input type="email" class="form-control" formControlName="email">
+      <div class="invalid-feedback" *ngIf="isInvalid('email')">
+        <span *ngIf="form.get('email').errors.email" class="form-text">Please type correct email!</span>
+        <span *ngIf="form.get('email').errors.required" class="form-text">Field is required!</span>
+        <span *ngIf="form.get('email').errors.bannedEmail" class="form-text">
+          Email {{ form.get('email').value }} is banned!
+        </span>
+        <span *ngIf="form.get('email').errors.uniqEmail" class="form-text">
+          Email {{ form.get('email').value }} is exist!
+        </span>
+      </div>
+    </div>
 
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" class="form-control" formControlName="password">
+      <div class="invalid-feedback" *ngIf="isInvalid('password')">
+        <span *ngIf="form.get('password').errors.minlength" class="form-text">
+          Min length is {{ form.get('password').errors.minlength.requiredLength }}, current length is
+          {{ form.get('password').errors.minlength.actualLength }}!
+        </span>
+        <span *ngIf="form.get('password').errors.required" class="form-text">Field is required!</span>
+      </div>
+    </div>
+
+    <div class="form-group" formGroupName="address">
+      <h3>Address</h3>
+      <div class="form-group">
+        <label>Country</label>
+        <select class="form-control" formControlName="country">
+          <option value="ua">Ukraine</option>
+          <option value="ru">Russia</option>
+          <option value="by">Belarus</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>City</label>
+        <input type="email" class="form-control" formControlName="city">
+      </div>
+      <button class="btn btn-secondary" type="button" (click)="setCapital()">Chose capital</button>
+    </div>
+
+    <div class="form-group" formGroupName="skills">
+      <h3>Skills</h3>
+      <button class="btn btn-secondary mb-3" type="button" (click)="addSkillControl()">Add skill</button>
+      <div class="form-group" *ngFor="let control of getSkillsControls(); let i = index;">
+        <label>Skill {{ i + 1 }}</label>
+        <input type="email" class="form-control" [formControlName]="i">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="form.invalid || form.pending">Submit</button>
+  </form>
+  <br>
+  <br>
+  <app-switch [(ngModel)]="switch"></app-switch>
+  <div>Value: {{ switch }}</div>
 </div>
