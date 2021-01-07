@@ -1,0 +1,35 @@
+.overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.my-modal {
+  width: 500px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 100;
+  background-color: white;
+  border-radius: 4px;
+
+  &__header {
+    background-color: red;
+    color: white;
+    padding: 16px;
+    font-weight: 700;
+    border-radius: 4px 4px 0 0;
+  }
+
+  &__body {
+    padding: 16px;
+  }
+
+  &__footer {
+    padding: 16px;
+  }
+}
